@@ -1,54 +1,110 @@
 ---
-
+const specialties = [
+  {
+    number: '01',
+    name: 'Nos pains',
+    description: 'Une croûte dorée, une mie vivante et le goût des choses bien faites.',
+    image: '/images/pain.svg',
+    alt: 'Illustration d’un pain artisanal',
+  },
+  {
+    number: '02',
+    name: 'Nos viennoiseries',
+    description: 'Feuilletées, généreuses et préparées chaque matin avec amour.',
+    image: '/images/viennoiserie.svg',
+    alt: 'Illustration d’un croissant doré',
+  },
+  {
+    number: '03',
+    name: 'Nos douceurs',
+    description: 'Des petites attentions sucrées pour les grandes envies de gourmandise.',
+    image: '/images/douceur.svg',
+    alt: 'Illustration d’une tarte aux fruits',
+  },
+];
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>My Site</title>
-	</head>
-	<body>
-		<main>
-			<h1>Welcome to EmDash</h1>
-			<p>Your site is ready. Open the <a href="/_emdash/admin">admin panel</a> to start adding content.</p>
-		</main>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Maison Levain, une boulangerie artisanale où le goût des bonnes choses se partage chaque jour." />
+    <title>Maison Levain — Boulangerie artisanale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="header">
+      <a class="brand" href="#accueil" aria-label="Maison Levain, accueil">
+        <span class="brand-icon" aria-hidden="true">✳</span>
+        <span>maison<br /><strong>levain<span class="brand-dot">.</span></strong></span>
+      </a>
+      <nav aria-label="Navigation principale">
+        <a href="#savoir-faire">Notre histoire</a>
+        <a href="#specialites">Nos spécialités</a>
+        <a href="#visite">Nous trouver</a>
+      </nav>
+      <a class="header-cta" href="#visite">Passez nous voir <span>↗</span></a>
+    </header>
 
-		<style>
-			* {
-				box-sizing: border-box;
-				margin: 0;
-				padding: 0;
-			}
+    <main id="accueil">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="eyebrow hero-eyebrow"><span class="little-star">✳</span> BOULANGERIE ARTISANALE & DE QUARTIER</p>
+          <h1 id="hero-title">Les bonnes choses<br />prennent <em>du temps.</em></h1>
+          <p class="hero-description">Du pain vivant, des mains passionnées et beaucoup d’amour. Bienvenue chez vous.</p>
+          <a class="button button-light" href="#specialites">Découvrir nos spécialités <span>↗</span></a>
+        </div>
+        <div class="hero-bottom"><span>FAIT AVEC LE CŒUR, CHAQUE JOUR</span><span>DÉFILER POUR DÉCOUVRIR ↓</span></div>
+        <div class="hero-stamp" aria-hidden="true"><span>FAIT MAISON</span><strong>✳</strong><span>AVEC AMOUR</span></div>
+      </section>
 
-			body {
-				font-family: system-ui, -apple-system, sans-serif;
-				color: #1a1a1a;
-				min-height: 100vh;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
+      <div class="ticker" aria-hidden="true">
+        <div>DU BON PAIN <span>✳</span> DE BONNES CHOSES <span>✳</span> DE BONS MOMENTS <span>✳</span> DU BON PAIN <span>✳</span> DE BONNES CHOSES <span>✳</span> DE BONS MOMENTS <span>✳</span></div>
+      </div>
 
-			main {
-				text-align: center;
-				padding: 2rem;
-			}
+      <section class="intro section-wrap" id="savoir-faire">
+        <div class="intro-label"><span class="section-number">01 / NOTRE PHILOSOPHIE</span><span class="scribble">✳</span></div>
+        <div class="intro-copy">
+          <h2>Le goût du vrai,<br /><em>tout simplement.</em></h2>
+          <div class="intro-bottom"><p>Chez Maison Levain, on croit aux choses simples : de bons ingrédients, du temps et des mains qui aiment leur métier. Chaque jour, nous pétrissons, façonnons et partageons le meilleur avec vous.</p><a class="text-link" href="#specialites">DÉCOUVRIR NOTRE SAVOIR-FAIRE <span>↗</span></a></div>
+        </div>
+      </section>
 
-			h1 {
-				font-size: 2rem;
-				margin-bottom: 0.75rem;
-			}
+      <section class="specialties" id="specialites">
+        <div class="section-wrap">
+          <div class="section-heading"><div><span class="section-number">02 / SORTI DU FOUR</span><h2>Il y a du bon <em>par ici.</em></h2></div><p>Du croustillant, du moelleux, du généreux.<br />Il y en a pour toutes les envies.</p></div>
+          <div class="cards">
+            {specialties.map((item) => (
+              <article class="card">
+                <div class="card-image"><img src={item.image} alt={item.alt} loading="lazy" /><span class="card-number">{item.number}</span></div>
+                <div class="card-heading"><h3>{item.name}</h3><span aria-hidden="true">↗</span></div>
+                <p>{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-			p {
-				color: #6b7280;
-				font-size: 1.0625rem;
-			}
+      <section class="visit" id="visite">
+        <div class="visit-photo" role="img" aria-label="Illustration d’un pain artisanal"></div>
+        <div class="visit-content"><span class="section-number">03 / LE PLAISIR DE SE RETROUVER</span><h2>On vous garde<br />une <em>place au chaud.</em></h2><p>Pour le pain du quotidien, une pause gourmande ou simplement pour dire bonjour : notre porte est toujours ouverte aux amoureux des bonnes choses.</p><a class="button button-dark" href="#accueil">À bientôt chez nous <span>↗</span></a><span class="visit-flower" aria-hidden="true">✳</span></div>
+      </section>
+    </main>
 
-			a {
-				color: #1a1a1a;
-			}
-		</style>
-	</body>
+    <footer class="footer"><div class="footer-top"><a class="brand footer-brand" href="#accueil"><span class="brand-icon" aria-hidden="true">✳</span><span>maison<br /><strong>levain<span class="brand-dot">.</span></strong></span></a><p>Du bon pain et des gens heureux.<br />C’est aussi simple que ça.</p><div class="footer-nav"><a href="#savoir-faire">Notre histoire</a><a href="#specialites">Nos spécialités</a><a href="#visite">Nous trouver</a></div></div><div class="footer-bottom"><span>© MAISON LEVAIN — BOULANGERIE ARTISANALE</span><span>FAIT AVEC AMOUR ✳</span></div></footer>
+  </body>
 </html>
+
+<style>
+  :global(*){box-sizing:border-box} :global(html){scroll-behavior:smooth} :global(body){margin:0;background:#f6f3eb;color:#28271f;font-family:'DM Sans',Arial,sans-serif} :global(a){color:inherit;text-decoration:none} :global(img){display:block;width:100%;height:100%;object-fit:cover} :global(h1),:global(h2),:global(h3),:global(p){margin:0} :global(h1),:global(h2),:global(h3){font-family:'DM Serif Display',Georgia,serif;font-weight:400} :global(em){font-weight:400}
+  .header{height:92px;padding:0 6.1%;display:flex;align-items:center;justify-content:space-between;background:#f9f7f0;gap:24px}.brand{display:flex;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;line-height:.88;letter-spacing:-.8px}.brand strong{font-size:25px;letter-spacing:-1.5px}.brand-icon{font-size:42px;color:#c85a39;line-height:1}.brand-dot{color:#c85a39}.header nav{display:flex;gap:42px;font-size:12px;font-weight:600}.header nav a:hover,.footer-nav a:hover{color:#bd5134}.header-cta{border:1px solid #bdbbb0;border-radius:2px;padding:15px 20px;font-size:11px;font-weight:700}.header-cta span{margin-left:20px;font-size:15px}
+  .hero{height:610px;min-height:530px;position:relative;display:flex;align-items:center;color:#fffaf0;background:linear-gradient(90deg,rgba(33,29,21,.78) 0%,rgba(33,29,21,.48) 45%,rgba(33,29,21,.12) 100%),url('/images/pain.svg') center 52%/cover}.hero-content{padding:0 9%;max-width:1000px;margin-top:-5px}.eyebrow,.section-number{font-size:10px;font-weight:700;letter-spacing:1.7px}.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:28px}.little-star{font-size:19px;color:#e4b490}.hero h1{font-size:clamp(57px,6.1vw,92px);line-height:1.02;letter-spacing:-2px}.hero h1 em{color:#e8b79c}.hero-description{font-size:15px;line-height:1.75;max-width:350px;margin:24px 0 30px;color:#f2ede4}.button{display:inline-flex;align-items:center;justify-content:space-between;gap:45px;padding:19px 21px;font-size:11px;font-weight:700}.button span{font-size:17px;line-height:10px}.button-light{background:#f8f5ec;color:#28271f}.button:hover{background:#c85a39;color:white}.hero-bottom{position:absolute;bottom:27px;left:6.1%;right:6.1%;display:flex;justify-content:space-between;font-size:9px;font-weight:700;letter-spacing:1.4px}.hero-stamp{position:absolute;right:9%;bottom:85px;width:112px;height:112px;border:1px solid rgba(255,255,255,.8);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transform:rotate(12deg);font-size:8px;letter-spacing:1px;font-weight:700}.hero-stamp strong{font-size:32px;line-height:1}
+  .ticker{background:#c75b3b;color:#fff7eb;overflow:hidden;padding:18px 0;white-space:nowrap}.ticker div{width:max-content;font-size:10px;letter-spacing:1.8px;font-weight:700;word-spacing:3px;transform:translateX(-25px)}.ticker span{font-size:17px;margin:0 36px;vertical-align:middle}.section-wrap{max-width:1440px;margin:auto;padding-left:9%;padding-right:9%}.intro{display:grid;grid-template-columns:35% 65%;padding-top:115px;padding-bottom:120px}.intro-label{display:flex;flex-direction:column;justify-content:space-between}.section-number{color:#ad573c}.scribble{font-size:60px;color:#c85a39;line-height:1}.intro h2,.section-heading h2,.visit h2{font-size:clamp(45px,5vw,70px);line-height:1.08;letter-spacing:-1.5px}.intro h2 em,.section-heading h2 em,.visit h2 em{color:#bf5e40}.intro-bottom{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-top:30px}.intro-bottom p,.section-heading p,.visit p{font-size:14px;line-height:1.9;color:#6d6b60;max-width:465px}.text-link{white-space:nowrap;font-size:9px;font-weight:700;letter-spacing:.8px;border-bottom:1px solid #bd593b;padding-bottom:10px}.text-link span{font-size:14px;margin-left:15px}
+  .specialties{background:#ebe8dd;padding:100px 0 115px}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:45px}.section-heading h2{margin-top:20px}.section-heading p{font-size:13px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.card-image{height:340px;position:relative;overflow:hidden;background:#d1c7b5}.card-image img{transition:transform .5s}.card:hover img{transform:scale(1.04)}.card-number{position:absolute;top:15px;left:15px;background:#f8f5ed;padding:9px 11px;font-size:10px;font-weight:700}.card-heading{display:flex;align-items:center;justify-content:space-between;margin-top:23px}.card-heading h3{font-size:28px}.card-heading span{font-size:20px;color:#b75437}.card p{font-size:13px;line-height:1.7;color:#777469;max-width:310px;margin-top:10px}
+  .visit{display:grid;grid-template-columns:1fr 1fr;min-height:510px;background:#f8f6ef}.visit-photo{background:linear-gradient(rgba(48,32,20,.1),rgba(48,32,20,.1)),url('/images/pain.svg') center/cover;min-height:450px}.visit-content{padding:90px 13% 85px;position:relative}.visit h2{margin:25px 0}.visit p{max-width:440px}.button-dark{background:#303029;color:#fffaf0;margin-top:30px}.visit-flower{position:absolute;right:9%;bottom:55px;color:#c85a39;font-size:54px}.footer{background:#282922;color:#f8f5eb;padding:65px 9% 25px}.footer-top{display:flex;justify-content:space-between;gap:35px;align-items:start;padding-bottom:65px}.footer-brand .brand-icon,.footer-brand .brand-dot{color:#dc8264}.footer-top p{font-size:13px;line-height:1.8;color:#c4c2b8}.footer-nav{display:flex;gap:28px;font-size:11px}.footer-bottom{border-top:1px solid #55564b;padding-top:24px;display:flex;justify-content:space-between;font-size:9px;letter-spacing:1px;color:#aaa99f}
+  @media(max-width:900px){.header{padding:0 5%}.header nav{gap:18px}.header-cta{padding:13px}.hero{height:570px}.intro{grid-template-columns:25% 75%}.intro-bottom{display:block}.text-link{display:inline-block;margin-top:25px}.card-image{height:270px}.visit-content{padding:65px 10%}.section-wrap{padding-left:7%;padding-right:7%}}
+  @media(max-width:650px){.header{height:76px}.brand{font-size:13px}.brand strong{font-size:22px}.brand-icon{font-size:35px}.header nav{gap:13px;font-size:10px}.header nav a:first-child{display:none}.header-cta{display:none}.hero{height:590px;min-height:0;background-position:57% center}.hero-content{padding:0 7%;margin-top:-20px}.hero h1{font-size:53px;letter-spacing:-1.5px}.hero-description{font-size:14px;max-width:290px}.hero-eyebrow{font-size:9px;letter-spacing:1.2px}.hero-bottom{left:7%;right:7%;font-size:8px}.hero-bottom span:first-child{display:none}.hero-stamp{width:85px;height:85px;right:7%;bottom:80px;font-size:6px}.hero-stamp strong{font-size:25px}.ticker{padding:14px 0}.ticker span{margin:0 20px}.intro{display:block;padding-top:75px;padding-bottom:80px}.intro-label{display:block;margin-bottom:25px}.scribble{display:none}.intro h2,.section-heading h2,.visit h2{font-size:45px}.intro-bottom p,.visit p{font-size:14px}.specialties{padding:75px 0 80px}.section-heading{display:block}.section-heading p{margin-top:20px}.cards{grid-template-columns:1fr;gap:35px}.card-image{height:300px}.card-heading{margin-top:16px}.card-heading h3{font-size:27px}.visit{grid-template-columns:1fr}.visit-photo{min-height:300px}.visit-content{padding:70px 7% 80px}.visit-flower{bottom:35px}.footer{padding:55px 7% 25px}.footer-top{flex-direction:column;gap:25px;padding-bottom:45px}.footer-nav{flex-wrap:wrap;gap:20px}.footer-bottom{gap:20px;font-size:8px;line-height:1.6}}
+</style>
